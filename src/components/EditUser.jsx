@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './EditUser.css'; // Import the CSS file for EditUser styling
+import './EditUser.css';
 
 const EditUser = () => {
   const { id } = useParams();
@@ -23,7 +23,6 @@ const EditUser = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    // Update user in localStorage
     const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
     const updatedUsers = storedUsers.map(user =>
       user.id === parseInt(id)
@@ -31,9 +30,9 @@ const EditUser = () => {
         : user
     );
 
-    localStorage.setItem('users', JSON.stringify(updatedUsers)); // Save to localStorage
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
 
-    navigate('/users'); // Navigate back to user list
+    navigate('/users');
   };
 
   return (
