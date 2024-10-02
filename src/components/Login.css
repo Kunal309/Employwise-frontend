@@ -1,60 +1,59 @@
-/* Center the login container */
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0; /* Light background */
-  }
-  
-  /* Style for the login box */
-  .login-box {
+    background-color: #f0f0f0;
+}
+
+
+.login-box {
     background-color: white;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
-  }
-  
-  /* Title style */
-  .login-box h2 {
+}
+
+
+.login-box h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
     font-size: 24px;
-  }
-  
-  /* Input group styling */
-  .input-group {
+}
+
+
+.input-group {
     margin-bottom: 15px;
-  }
-  
-  .input-group label {
+}
+
+.input-group label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
     color: #333;
-  }
-  
-  .input-group input {
+}
+
+.input-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
-  }
-  
-  /* Error message styling */
-  .error {
+}
+
+
+.error {
     color: red;
     font-size: 14px;
     margin-bottom: 15px;
     text-align: center;
-  }
-  
-  /* Login button styling */
-  .login-button {
+}
+
+
+.login-button {
     width: 100%;
     padding: 12px;
     background-color: #007bff;
@@ -64,16 +63,15 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .login-button:hover {
+}
+
+.login-button:hover {
     background-color: #0056b3;
-  }
-  
-  /* Responsive design for smaller screens */
-  @media (max-width: 480px) {
+}
+
+
+@media (max-width: 480px) {
     .login-box {
-      padding: 20px;
+        padding: 20px;
     }
-  }
-  
+}
