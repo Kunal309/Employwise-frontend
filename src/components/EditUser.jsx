@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './EditUser.css'; // Import the CSS file for EditUser styling
 
 const EditUser = () => {
   const { id } = useParams();
@@ -36,22 +37,22 @@ const EditUser = () => {
   };
 
   return (
-    <div>
+    <div className="edit-container">
       <h2>Edit User</h2>
       <form onSubmit={handleUpdate}>
-        <div>
+        <div className="form-group">
           <label>First Name: </label>
           <input value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Last Name: </label>
           <input value={lastName} onChange={(e) => setLastName(e.target.value)} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Email: </label>
           <input value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
-        <button type="submit">Update</button>
+        <button className="submit-btn" type="submit">Update</button>
       </form>
     </div>
   );
