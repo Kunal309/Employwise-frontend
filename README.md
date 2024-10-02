@@ -1,4 +1,9 @@
-# React + Vite
+# React 
+
+## Live Application URL
+
+### https://employwise-frontend.vercel.app/login
+This URL has the application deployed in
 
 ## Prerequisites
 Make sure you have the following installed on your machine:
