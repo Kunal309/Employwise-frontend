@@ -5,7 +5,7 @@
 ### https://employwise-frontend.vercel.app/
 This URL has the application deployed in
 
-## Prerequisites
+## Prerequisites for running on local machine
 Make sure you have the following installed on your machine:
 
 Node.js (v14 or later)
