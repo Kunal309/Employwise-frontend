@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Add this line to include the CSS file
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('eve.holt@reqres.in');
@@ -13,16 +13,16 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post('https://reqres.in/api/login', { email, password });
-      
-      // Check if token is received
+
+
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
-        navigate('/users'); // Redirect to the users list page
+        navigate('/users');
       } else {
         setError('Login failed: No token received');
       }
     } catch (err) {
-      console.error(err);  // Log any potential errors
+      console.error(err);
       setError('Invalid credentials or server issue. Please try again.');
     }
   };
