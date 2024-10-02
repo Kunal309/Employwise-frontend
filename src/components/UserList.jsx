@@ -8,6 +8,7 @@ const UserList = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+  const [filterOption, setFilterOption] = useState('all');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,16 +19,16 @@ const UserList = () => {
     const response = await axios.get(`https://reqres.in/api/users?page=${page}`);
     const apiUsers = response.data.data;
 
-    // Get all users from localStorage
+
     const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
 
-    // Merge the users with the stored users in localStorage if available
+
     const mergedUsers = apiUsers.map(user => {
       const storedUser = storedUsers.find(stored => stored.id === user.id);
-      return storedUser || user; // Use stored user if exists, otherwise API user
+      return storedUser || user;
     });
 
-    // Update localStorage with the fetched users
+
     const allUsers = [...storedUsers.filter(stored => !apiUsers.some(user => user.id === stored.id)), ...mergedUsers];
     localStorage.setItem('users', JSON.stringify(allUsers));
 
@@ -39,7 +40,7 @@ const UserList = () => {
     const updatedUsers = users.filter(user => user.id !== id);
     setUsers(updatedUsers);
 
-    // Update localStorage
+
     const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
     const updatedStoredUsers = storedUsers.filter(user => user.id !== id);
     localStorage.setItem('users', JSON.stringify(updatedStoredUsers));
@@ -49,22 +50,47 @@ const UserList = () => {
     navigate(`/edit-user/${id}`);
   };
 
-  const filteredUsers = users.filter(user => 
-    `${user.first_name} ${user.last_name}`.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    user.email.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+
+  const filteredUsers = users.filter(user => {
+    if (filterOption === 'first_name') {
+      return user.first_name.toLowerCase().includes(searchQuery.toLowerCase());
+    } else if (filterOption === 'last_name') {
+      return user.last_name.toLowerCase().includes(searchQuery.toLowerCase());
+    } else if (filterOption === 'email') {
+      return user.email.toLowerCase().includes(searchQuery.toLowerCase());
+    } else {
+
+      return `${user.first_name} ${user.last_name}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchQuery.toLowerCase());
+    }
+  });
 
   return (
     <div>
       <div className="header">
         <h2>User List</h2>
-        <input
-          type="text"
-          placeholder="Search by name or email..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
-        />
+
+        <div className="filter-container">
+          <select
+            className="filter-dropdown"
+            value={filterOption}
+            onChange={(e) => setFilterOption(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="first_name">First Name</option>
+            <option value="last_name">Last Name</option>
+            <option value="email">Email</option>
+          </select>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+
+
+        </div>
       </div>
 
       <table>
