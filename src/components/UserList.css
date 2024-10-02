@@ -1,0 +1,37 @@
+.header {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center vertically */
+    margin-bottom: 20px; /* Space below the header */
+    flex-wrap: wrap; /* Allow items to wrap */
+  }
+  
+  .search-input {
+    padding: 8px; /* Add padding for better aesthetics */
+    border: 1px solid black; /* Add a light border */
+    border-radius: 4px; /* Rounded corners */
+    width: 250px; /* Set a fixed width for the search bar */
+    min-width: 150px; /* Minimum width to prevent it from becoming too small */
+    margin-left: auto; /* Push the search input to the right */
+  }
+  
+  @media (max-width: 600px) {
+    .header {
+      flex-direction: column; /* Stack items vertically on small screens */
+      align-items: flex-start; /* Align items to the start */
+    }
+  
+    .search-input {
+      width: 100%; /* Full width on small screens */
+      margin-top: 10px; /* Space above the search input */
+    }
+  }
+  
+  
+  .search-input {
+    padding: 11px 24px;
+    border: 1.5px solid black;
+    border-radius: 12px;
+    width: 250px;
+  }
+  
