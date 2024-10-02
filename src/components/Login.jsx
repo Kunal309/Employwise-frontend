@@ -1,54 +1,61 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: nowrap;
-  width: 100%;
-}
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
-.filter-container {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: nowrap;
-}
+const Login = () => {
+  const [email, setEmail] = useState('eve.holt@reqres.in');
+  const [password, setPassword] = useState('cityslicka');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-.search-input {
-  padding: 8px;
-  border: 1px solid black;
-  border-radius: 4px;
-  width: 250px;
-  min-width: 150px;
-}
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('https://reqres.in/api/login', { email, password });
 
-.filter-dropdown {
-  padding: 8px;
-  border: 1px solid black;
-  border-radius: 4px;
-  width: 25%;
-  min-width: 50px;
-}
 
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        navigate('/users');
+      } else {
+        setError('Login failed: No token received');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Invalid credentials or server issue. Please try again.');
+    }
+  };
 
-  .filter-container {
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
+  return (
+    <div className="login-container">
+      <div className="login-box">
+        <h2>Login</h2>
+        <form onSubmit={handleLogin}>
+          <div className="input-group">
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label>Password:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          {error && <p className="error">{error}</p>}
+          <button type="submit" className="login-button">Login</button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-  .search-input {
-    width: 100%;
-  }
-
-  .filter-dropdown {
-    width: 25%;
-    min-width: 50px;
-  }
-}
+export default Login;
