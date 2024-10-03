@@ -2,7 +2,7 @@
 
 ## Live Application URL
 
-### https://employwise-frontend.vercel.app/
+### https://employwise-frontend.vercel.app
 This URL has the application deployed in
 
 ## Prerequisites for running on local machine
